@@ -1,0 +1,22 @@
+{
+  "collections": [
+    {
+      "name": "posts",
+      "fields": [
+        { "name": "title", "type": "string" },
+        { "name": "topic", "type": "string" },
+        { "name": "excerpt", "type": "string" },
+        { "name": "content", "type": "string" },
+        { "name": "date", "type": "timestamp" },
+        { "name": "tags", "type": "array" }
+      ]
+    },
+    {
+      "name": "topics",
+      "fields": [
+        { "name": "id", "type": "string" },
+        { "name": "label", "type": "string" }
+      ]
+    }
+  ]
+}
