@@ -1,0 +1,6 @@
+{
+  "name": "Tech Blog with Hidden Access",
+  "description": "A tech blog designed with a dark mode interface, integrated Gemini AI correction, minimalist navigation, and a hidden login feature.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
