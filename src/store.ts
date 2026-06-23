@@ -20,17 +20,22 @@ export function useStore() {
 
     const unsubscribeTopics = onSnapshot(collection(db, 'topics'), (snapshot) => {
       if (snapshot.empty) {
-        INITIAL_TOPICS.forEach(topic => setDoc(doc(db, 'topics', topic.id), topic));
+        INITIAL_TOPICS.forEach(topic => setDoc(doc(db, 'topics', topic.id), topic).catch(console.error));
       } else {
         const dbTopics = snapshot.docs.map(docSnap => ({ id: docSnap.id, ...docSnap.data() } as Topic));
         setTopics(dbTopics);
       }
+    }, (error) => {
+      console.error("Firestore topics error:", error);
     });
 
     const unsubscribePosts = onSnapshot(collection(db, 'posts'), (snapshot) => {
       const dbPosts = snapshot.docs.map(docSnap => ({ id: docSnap.id, ...docSnap.data() } as Post))
         .sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       setPosts(dbPosts);
+      setIsInitializing(false);
+    }, (error) => {
+      console.error("Firestore posts error:", error);
       setIsInitializing(false);
     });
 
